@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {IUser} from "../../interfaces/user.interface";
 
 @Component({
   selector: 'app-user',
@@ -8,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
+  @Input() //отримуємо
+  user:IUser
 
+  @Output() //передаємо
+  lift = new EventEmitter<IUser>
+
+  getDetails():void {
+    this.lift.emit(this.user)
+  }
 }
